@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832500801040",
+    "project_id": "smart-washing-machine-788a8",
+    "storage_bucket": "smart-washing-machine-788a8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832500801040:android:6efc5f0b5b00432630f495",
+        "android_client_info": {
+          "package_name": "com.example.smart_washing_machine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7cHJN1hirh7mBHA_3zTLi85Xy6BpkIUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
