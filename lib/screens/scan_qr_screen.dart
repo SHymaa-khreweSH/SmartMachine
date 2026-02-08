@@ -101,15 +101,15 @@ class _ScanQrScreenState extends State<ScanQrScreen> {
 
               if (ok) {
                 _showMsg("✅ Machine linked successfully");
-                Navigator.pop(context); // رجوع للـ Home
+                Navigator.pop(context); 
               } else {
-                // فشل الربط: رجّع scanned=false عشان تقدر تعيدي المحاولة
+                
                 setState(() => scanned = false);
               }
             },
           ),
 
-          // Overlay (إطار المسح)
+          
           Positioned.fill(
             child: IgnorePointer(
               child: Container(
@@ -120,7 +120,7 @@ class _ScanQrScreenState extends State<ScanQrScreen> {
             ),
           ),
 
-          // فتحّة شفافة + إطار
+          
           Center(
             child: Container(
               width: 260,
@@ -135,7 +135,7 @@ class _ScanQrScreenState extends State<ScanQrScreen> {
             ),
           ),
 
-          // نص إرشادي تحت
+         
           Positioned(
             left: 18,
             right: 18,

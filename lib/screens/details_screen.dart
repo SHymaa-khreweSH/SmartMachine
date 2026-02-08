@@ -476,7 +476,7 @@ class _MachineDetailsScreenState extends State<MachineDetailsScreen> {
                                                   color: Colors.white,
                                                 ),
                                                 label: Text(
-                                                  _status == "running" ? "Pause" : "Start",
+                                                  _status == "running" ? "Washing" : "Start",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w800,
                                                     color: Colors.white,

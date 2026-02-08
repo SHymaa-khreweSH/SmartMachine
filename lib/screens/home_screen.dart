@@ -21,10 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
   String userName = "Loading...";
   String? _uid;
 
-  // لاختيار Machine للـ Notifications (الأفضل running، وإلا أول جهاز)
+  
   String? _preferredMachineId;
 
-  // للتحكم بالـ bottom nav (home / notifications / settings / profile)
+ 
   int _navIndex = 0;
 
   @override
@@ -32,7 +32,7 @@ void initState() {
   super.initState();
   _uid = FirebaseAuth.instance.currentUser?.uid;
   _loadUserName();
-  _listenToUnreadAlerts(); // ✅ أضفناها هون
+  _listenToUnreadAlerts(); 
 }
 
   Future<void> _loadUserName() async {
@@ -105,7 +105,7 @@ void initState() {
   void _onNavTap(int index) {
     setState(() => _navIndex = index);
 
-    // Home = لا شيء
+    
     if (index == 0) return;
 
     if (index == 1) {
@@ -137,21 +137,6 @@ void initState() {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F9FD),
 
-      // ✅ FAB للـ QR بدل دائرة وسطية (أجمل + قياسي)
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFF00BCD4),
-        elevation: 4,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const ScanQrScreen()),
-          );
-        },
-        child: const Icon(Icons.qr_code_scanner, color: Colors.white),
-      ),
-
-      // ✅ BottomAppBar نظيف ومرتب + ✅ SafeArea (حل مشكلة overflow تحت)
       bottomNavigationBar: Builder(
   builder: (context) {
     final bottomInset = MediaQuery.of(context).viewPadding.bottom;
@@ -162,10 +147,10 @@ void initState() {
       shape: const CircularNotchedRectangle(),
       notchMargin: 8,
       child: SizedBox(
-        // ✅ زدنا ارتفاع البار على قد مساحة أزرار النظام
+       
         height: 70 + bottomInset,
         child: Padding(
-          // ✅ ومنترك مساحة تحت للأزرار
+          
           padding: EdgeInsets.only(bottom: bottomInset),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -176,18 +161,25 @@ void initState() {
                 isActive: _navIndex == 0,
                 onTap: () => _onNavTap(0),
               ),
+              SizedBox(width: 25),
               _AlertNavIcon(
-  count: _unreadAlertsCount,
-  onTap: () => _onNavTap(1),
-),
+                count: _unreadAlertsCount,
+                onTap: () => _onNavTap(1),
+                  ),
+                  SizedBox(width: 30),
 
-              const SizedBox(width: 36), // مكان الـ FAB
-              _NavIcon(
-                icon: Icons.settings_rounded,
-                label: "Settings",
-                isActive: false,
-                onTap: () => _onNavTap(2),
-              ),
+            _NavIcon(
+                icon: Icons.qr_code_scanner,
+                label: "Scan QR",  
+                isActive: false,    
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const ScanQrScreen()),
+                  );
+                },
+              ), 
+            const SizedBox(width: 36), 
               _NavIcon(
                 icon: Icons.person_rounded,
                 label: "Profile",
@@ -224,7 +216,7 @@ void initState() {
                 // Empty / No data
                 final docs = snapshot.data?.docs ?? [];
                 if (docs.isEmpty) {
-                  // لا يوجد أجهزة — واجهة Empty State فخمة
+                 
                   return CustomScrollView(
                     physics: const BouncingScrollPhysics(),
                     slivers: [
@@ -261,8 +253,8 @@ void initState() {
                   );
                 }
 
-                // ✅ اختيار آلة للـ Notifications:
-                // الأفضل running، وإلا أول جهاز
+                
+                
                 final runningDoc = docs.cast<QueryDocumentSnapshot?>().firstWhere(
                       (d) =>
                           (d?.data() as Map<String, dynamic>?)?['status'] ==
@@ -271,7 +263,7 @@ void initState() {
                     );
                 _preferredMachineId = (runningDoc ?? docs.first).id;
 
-                // ✅ احصائيات سريعة
+              
                 int runningCount = 0;
                 for (final d in docs) {
                   final data = d.data() as Map<String, dynamic>;
@@ -281,7 +273,7 @@ void initState() {
                 return RefreshIndicator(
                   color: const Color(0xFF00BCD4),
                   onRefresh: () async {
-                    // Stream يعيد نفسه تلقائيًا، لكن نخليها UX لطيف
+                    
                     await _loadUserName();
                   },
                   child: CustomScrollView(
@@ -301,7 +293,7 @@ void initState() {
                         },
                       ),
 
-                      // عنوان + زر صغير
+                     
                       SliverToBoxAdapter(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(18, 18, 18, 12),
@@ -406,7 +398,7 @@ void initState() {
                             crossAxisCount: 2,
                             mainAxisSpacing: 14,
                             crossAxisSpacing: 14,
-                            childAspectRatio: 0.78, // ✅ كان 0.92 (حل overflow بالكارد)
+                            childAspectRatio: 0.78, 
                           ),
                         ),
                       ),
@@ -705,7 +697,7 @@ Row(
 
     const SizedBox(width: 10),
 
-    // ✅ هذا بيضمن ما يصير overflow أبداً
+    
     Expanded(
       child: Align(
         alignment: Alignment.centerRight,
@@ -811,17 +803,17 @@ class _NavIcon extends StatelessWidget {
   mainAxisSize: MainAxisSize.min,
   mainAxisAlignment: MainAxisAlignment.center,
   children: [
-    Icon(icon, color: color, size: 24), // ✅ قللنا 2px
-    const SizedBox(height: 2),          // ✅ قللنا 1px
+    Icon(icon, color: color, size: 24),
+    const SizedBox(height: 2),          
     Text(
       label,
       maxLines: 1,
-      overflow: TextOverflow.ellipsis,  // ✅ يمنع النزول لسطر ثاني
+      overflow: TextOverflow.ellipsis,  
       style: TextStyle(
         color: color,
-        fontSize: 10,                   // ✅ قللنا شوي
+        fontSize: 10,                   
         fontWeight: FontWeight.w700,
-        height: 1.0,                    // ✅ مهم لمنع bottom overflow
+        height: 1.0,                    
       ),
     ),
   ],

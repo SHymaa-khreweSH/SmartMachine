@@ -32,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: size.height * 0.08),
 
-                    // ✅ أيقونة بدل الصورة
+                  
                     Icon(
                       Icons.local_laundry_service_rounded,
                       size: 140,
@@ -66,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
 
                     const SizedBox(height: 30),
 
-                    // الكارد السفلي
+                    
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(

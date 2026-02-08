@@ -26,17 +26,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final newPassCtrl = TextEditingController();
   final confirmPassCtrl = TextEditingController();
 
-  int _navIndex = 3; // Profile active
+  int _navIndex = 3; 
   String? _preferredMachineId;
 
-  int _unreadAlertsCount = 0; // لتخزين عدد الإشعارات الغير مقروءة
+  int _unreadAlertsCount = 0; 
 
   @override
   void initState() {
     super.initState();
     _loadUserData();
     _loadPreferredMachine();
-    _listenToUnreadAlerts(); // إضافة مراقبة الإشعارات الغير مقروءة
+    _listenToUnreadAlerts(); 
   }
 
   @override
